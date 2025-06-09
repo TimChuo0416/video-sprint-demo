@@ -1,0 +1,17 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  step_a:
+    build: .
+    command: python step_a.py
+    volumes:
+      - ./shared_data:/app/data
+
+  step_b:
+    build: .
+    command: python step_b.py
+    volumes:
+      - ./shared_data:/app/data
+    depends_on:
+      - step_a
